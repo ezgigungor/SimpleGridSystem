@@ -3,14 +3,14 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
 
-    [SerializeField] private static int _width = 5;
-    [SerializeField] private static  int _height = 5;
+    [SerializeField] private int _width = 5;
+    [SerializeField] private int _height = 5;
     [SerializeField] private GameObject _tilePrefab;
     [SerializeField] private SpriteRenderer _gridBackgroundPrefab;
 
     private Transform _cameraTransform;
     public static GridManager Instance { get; private set; }
-    public static int Height { get => _height; }
+    public int Height { get => _height; }
 
     private void Awake()
     {
@@ -45,12 +45,12 @@ public class GridManager : MonoBehaviour
         _cameraTransform.Translate(gridCenter);
     }
 
-
     public Vector3 GetNearestPointOnGrid(Vector3 pos)
     {
         Vector3 newPos = new Vector3(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), 0);
         return newPos;
     }
 
-    public bool CheckIfInsideLevel(Vector3 pos) => pos.x < 0 || pos.y < 0 || pos.x > _width || pos.y > _height;
+
+    public bool IsInsideGrid(Vector3 pos) => pos.x < 0 || pos.y < 0 || pos.x > _width || pos.y > _height;
 }
