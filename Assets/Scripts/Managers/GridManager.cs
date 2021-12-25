@@ -32,12 +32,8 @@ public class GridManager : MonoBehaviour
     private void CreateGrid()
     {
         for (int i = 0; i < _width; i++)
-        {
             for (int j = 0; j < _height; j++)
-            {
                 Instantiate(_tilePrefab, new Vector2(i, j), Quaternion.identity);
-            }
-        }
 
         Vector2 gridCenter = new Vector2((float)(_width - 1) / 2, (float)(_height - 1) / 2);
         var gridBackground = Instantiate(_gridBackgroundPrefab, gridCenter , Quaternion.identity);
@@ -52,5 +48,8 @@ public class GridManager : MonoBehaviour
     }
 
 
-    public bool IsInsideGrid(Vector3 pos) => pos.x < 0 || pos.y < 0 || pos.x > _width || pos.y > _height;
+    public bool IsInsideGrid(Vector3 pos)
+    {
+        return pos.x > - 0.5f && pos.x < (float) _width - 0.5f && pos.y > - 0.5f && pos.y < (float) _height - 0.5f;
+    }
 }
